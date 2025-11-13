@@ -1,13 +1,13 @@
-<!--{% macro campo1(name,placeholder,type='text')%}
+{% macro campo1(name,placeholder,type='text')%}
 
 <div class="mb-3">
             <label for="{{name}}" class="form-label">N1</label>
             <input type="text" class="form-control" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}">
         </div>
 
-{% endmacro %}-->
+{% endmacro %}
 
-<!--{%macro campoNuevo(field)%}
+{%macro campoNuevo(field)%}
 <dt>{{ field.label }}
   <dd>{{ field(**kwargs)|safe }}
   {% if field.errors %}
@@ -18,9 +18,9 @@
     </ul>
   {% endif %}
   </dd>
-{% endmacro %}-->
+{% endmacro %}
 
-{% macro campoNuevo(field) %}
+<!--{% macro campoNuevo(field) %}
 <div class="form-group">
     <label for="{{ field.id }}" class="form-label"><strong>{{ field.label.text }}</strong></label>
     {{ field(class="form-control", **kwargs)|safe }}
@@ -32,4 +32,4 @@
         </div>
     {% endif %}
 </div>
-{% endmacro %}
+{% endmacro %}-->

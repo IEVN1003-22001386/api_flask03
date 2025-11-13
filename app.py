@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from flask import make_response, jsonify
 import json
 from datetime import date
+import math
 import forms
 import pizza
 
@@ -184,6 +185,38 @@ def operas():
 
     return render_template('operas.html') 
     
+
+@app.route('/figura', methods=['GET','POST'])
+def figura():
+    area = None
+    figura_forms = forms.FigurasForm(request.form)
+    
+    if request.method == 'POST' and figura_forms.validate():
+        fig = figura_forms.figura.data
+        base = 0 
+        altura = 0 
+
+        try:
+            base = float(figura_forms.valor1.data or 0)
+        except ValueError:
+            base = 0
+
+        if fig == 'tri':
+            try:
+                altura = float(figura_forms.valor2.data or 0)
+            except ValueError:
+                altura = 0
+
+        if fig == 'cua':
+            area = base * base
+        elif fig == 'tri':
+            area = (base * altura) / 2
+        elif fig == 'cir':
+            area = math.pi * (base ** 2)
+        elif fig == 'pent':
+            area = (5 * base**2) / (4 * math.tan(math.pi/5))
+            
+    return render_template('figuras.html', form = figura_forms, area = area)
 
 @app.route('/distancia')
 def distancia():
